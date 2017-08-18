@@ -1,0 +1,61 @@
+{
+  "name": "thaw-tic-tac-toe-web-service",
+  "version": "1.0.0",
+  "description": "An Express.js Tic-Tac-Toe Web service",
+  "main": "app.js",
+  "homepage": "https://github.com/tom-weatherhead/thaw-tic-tac-toe-web-service#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tom-weatherhead/thaw-tic-tac-toe-web-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tom-weatherhead/thaw-tic-tac-toe-web-service/issues"
+  },
+  "scripts": {
+    "lint": "grunt eslint",
+    "mocha": "grunt mochaTest",
+    "nsp": "grunt nsp",
+    "start": "nodemon server.js",
+    "test": "grunt test",
+    "watch": "grunt watch"
+  },
+  "dependencies": {
+    "express": "latest",
+    "jquery": "latest",
+    "nodemon": "latest",
+    "thaw-tic-tac-toe-engine": "file:///C:\\Archive\\Git\\LocalSandbox\\Node.js\\thaw-npm-packages-tgz\\thaw-tic-tac-toe-engine-0.0.0.tgz"
+  },
+  "devDependencies": {
+    "babel-cli": "latest",
+    "babel-preset-env": "latest",
+    "chai": "latest",
+    "chai-files": "latest",
+    "chai-http": "latest",
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-eslint": "latest",
+    "grunt-mocha-test": "latest",
+    "grunt-nsp": "latest",
+    "mocha": "latest"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "keywords": [
+    "chai",
+    "eslint",
+    "express",
+    "grunt",
+    "jquery",
+    "mocha",
+    "node",
+    "nsp"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Tom Weatherhead",
+    "url": "https://github.com/tom-weatherhead"
+  }
+}
