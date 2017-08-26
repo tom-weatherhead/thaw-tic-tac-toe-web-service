@@ -1,14 +1,11 @@
-// node-js-express-template/server.js
-
-// An example of a simple Express.js Web server.
-// Tom Weatherhead - August 1, 2017
+// thaw-tic-tac-toe-web-service/server.js
 
 // require('rootpath')();
-const app = require('./app');
+const app = require('.');
 
 const config = require('./config');			// I.e. ./config.json
 
-const serverListenPort = config.listenPort || 3000;
+const serverListenPort = config.serverListenPort || 3000;
 
 // Start the server:
 
