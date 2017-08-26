@@ -3,20 +3,12 @@
 // A Web server that makes the functionality in the Tic-Tac-Toe engine in thaw-tic-tac-toe-engine available as a Web service.
 
 const express = require('express');
-// const path = require('path');
 
 const gameEngine = require('thaw-tic-tac-toe-engine');
 
 const app = express();
 
-// app.use(express.static(path.join(__dirname, 'public')));
-
 // **** Request Event Handlers: Begin ****
-
-// app.get('/', function (req, res) {
-//	console.log('GET / : Sending the file index.html');
-//	res.sendFile(path.join(__dirname, 'index.html'));
-//});
 
 app.get('/tictactoe', function (req, res) {
 	try {
@@ -41,10 +33,6 @@ app.get('/tictactoe', function (req, res) {
 		// Or res.status(500).send(error.message);
 	}
 });
-
-// app.get('/script.js', function (req, res) {
-//	res.sendFile(path.join(__dirname, 'script.js'));
-// });
 
 // **** Request Event Handlers: End ****
 
