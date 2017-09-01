@@ -2,39 +2,51 @@
 
 // A Web server that makes the functionality in the Tic-Tac-Toe engine in thaw-tic-tac-toe-engine available as a Web service.
 
-const express = require('express');
+const minMaxPly = 1;
+const maxMaxPly = 6;
 
 const gameEngine = require('thaw-tic-tac-toe-engine');
 
+const express = require('express');
 const app = express();
 
-// **** Request Event Handlers: Begin ****
+var router = express.Router();
 
-app.get('/tictactoe', function (req, res) {
-	try {
-		let boardWidth = 3;
-		let boardString = 'X X   O  ';
-		let maxPly = 2;
-		let result = gameEngine.findBestMove(boardString, maxPly);
+let errorMessages = {
+};
 
-		let boardArray = boardString.split('');
+// router.get('/:id([0-9]+)', middleware1, middleware2, function(req, res) {
+router.get('/:board([EXO]{9})/:maxPly([0-9]{1})', function(req, res) {
+	// console.log('req.params.board before replace: \'' + req.params.board + '\'');
+	// Global replace in string: See https://stackoverflow.com/questions/38466499/how-to-replace-all-to-in-nodejs
+	let boardString = req.params.board.replace(/E/g, ' ');			// Replaces all 'E' with ' '.
+	// console.log('boardString after replace: \'' + boardString + '\'');
+	// console.log('req.params.maxPly as string:', req.params.maxPly.toString());
+	let maxPly = parseInt(req.params.maxPly, 10);
+	// console.log('maxPly as int:', maxPly);
+	
+	// if (maxPly !== maxPly) {
+		// res.status(400).send('maxPly \'' + req.params.maxPly.toString() + '\' is not an integer.');
+	// } else
+	if (maxPly < minMaxPly || maxPly > maxMaxPly) {
+		res.status(400).send('maxPly \'' + maxPly + '\' is not in the range [' + minMaxPly + ', ' + maxMaxPly + '].');
+	} else {
 
-		boardArray[result.bestRow * boardWidth + result.bestColumn] = result.player;
+		try {
+			let result = gameEngine.findBestMove(boardString, maxPly);
 
-		console.log('After:', boardArray.join(''));
-
-		result.newBoardString = boardArray.join('');
-
-		console.log('GET /tictactoe : Responding with JSON result:', result);
-		res.json(result);
-	} catch (error) {
-		console.error('GET /tictactoe threw an exception:', error);
-		res.sendStatus(500);
-		// Or res.status(500).send(error.message);
+			// console.log('GET /:board([EXO]{9})/:maxPly([0-9]{1}) : result:', result);
+			res.json(result);
+		} catch (error) {
+			console.error('engine.findBestMove() threw an exception:');
+			console.error(error);
+			// For a description of the Node.js Error class, see https://nodejs.org/api/errors.html#errors_class_error
+			res.status(500).send('The Tic-Tac-Toe game engine threw an exception: ' + error.message);
+		}
 	}
 });
 
-// **** Request Event Handlers: End ****
+app.use('/tictactoe', router);
 
 module.exports = app;
 

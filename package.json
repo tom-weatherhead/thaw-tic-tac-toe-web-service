@@ -51,7 +51,7 @@
     "mocha",
     "node",
     "nsp",
-	"tic-tac-toe"
+    "tic-tac-toe"
   ],
   "license": "MIT",
   "author": {
