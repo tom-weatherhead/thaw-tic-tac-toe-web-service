@@ -1,9 +1,16 @@
-// thaw-tic-tac-toe-web-service/server.js
+#!/usr/bin/env node
+
+// thaw-tic-tac-toe-web-service/src/server.js
+
+// For information about "npm link" and the "bin" section of the package.json file, see:
+// http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm
+
+'use strict';
 
 // require('rootpath')();
-const app = require('.');
+const app = require('..').app;
 
-const config = require('./config');			// I.e. ./config.json
+const config = require('../config/config');			// I.e. ./config.json
 
 const serverListenPort = config.serverListenPort || 3000;
 
