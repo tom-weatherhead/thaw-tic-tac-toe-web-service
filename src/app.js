@@ -11,6 +11,12 @@ const maxMaxPly = gameEngine.maxMaxPly;	// 6;
 const express = require('express');
 const app = express();
 
+// app.use(function(req, res, next) {
+	// res.header("Access-Control-Allow-Origin", "null");
+	// res.header("GET");
+	// next();
+// });
+
 var router = express.Router();
 
 let errorMessages = {
