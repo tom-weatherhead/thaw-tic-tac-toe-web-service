@@ -4,10 +4,9 @@
 
 'use strict';
 
-const minMaxPly = 1;
-const maxMaxPly = 6;
-
 const gameEngine = require('thaw-tic-tac-toe-engine');
+const minMaxPly = gameEngine.minMaxPly;	// 1;
+const maxMaxPly = gameEngine.maxMaxPly;	// 6;
 
 const express = require('express');
 const app = express();
@@ -23,19 +22,11 @@ let errorMessages = {
 	}
 };
 
-// router.get('/:id([0-9]+)', middleware1, middleware2, function(req, res) {
 router.get('/:board([EXO]{9})/:maxPly([0-9]{1})', function(req, res) {
-	// console.log('req.params.board before replace: \'' + req.params.board + '\'');
 	// Global replace in string: See https://stackoverflow.com/questions/38466499/how-to-replace-all-to-in-nodejs
-	let boardString = req.params.board.replace(/E/g, ' ');			// Replaces all 'E' with ' '.
-	// console.log('boardString after replace: \'' + boardString + '\'');
-	// console.log('req.params.maxPly as string:', req.params.maxPly.toString());
+	let boardString = req.params.board.replace(/E/g, ' ');		// Replaces all 'E' with ' '.
 	let maxPly = parseInt(req.params.maxPly, 10);
-	// console.log('maxPly as int:', maxPly);
-	
-	// if (maxPly !== maxPly) {
-		// res.status(400).send('maxPly \'' + req.params.maxPly.toString() + '\' is not an integer.');
-	// } else
+
 	if (maxPly < minMaxPly || maxPly > maxMaxPly) {
 		let message = errorMessages.maxPlyOutOfRange(maxPly);
 
@@ -46,7 +37,6 @@ router.get('/:board([EXO]{9})/:maxPly([0-9]{1})', function(req, res) {
 		try {
 			let result = gameEngine.findBestMove(boardString, maxPly);
 
-			// console.log('GET /:board([EXO]{9})/:maxPly([0-9]{1}) : result:', result);
 			res.json(result);
 		} catch (error) {
 			let message = errorMessages.gameEngineError(error);
@@ -66,7 +56,5 @@ module.exports = {
 	errorMessages: errorMessages,
 	gameEngine: gameEngine
 };
-
-// module.exports = app;
 
 // End of File.

@@ -5,17 +5,16 @@
 // Use chai and chai-http to test our app.
 // See https://groundberry.github.io/development/2016/12/10/testing-express-with-mocha-and-chai.html
 
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-
 const pkg = require('..');
 const app = pkg.app;
 const gameEngine = pkg.gameEngine;
 const test_descriptors = gameEngine.test_descriptors;
 
-chai.use(chaiHttp);
-
+const chai = require('chai');
+const chaiHttp = require('chai-http');
 const expect = chai.expect;
+
+chai.use(chaiHttp);
 
 describe('App', function () {
 	test_descriptors.forEach(test_descriptor => {
@@ -28,21 +27,14 @@ describe('App', function () {
 				chai.request(app).get(url).end(function (error, result) {
 					// Assert
 					expect(error).to.be.null;		// eslint-disable-line
-
-					// Chai.js has a flexible, fluent syntax for "expect" :
-					// expect(result).not.null;			// eslint-disable-line no-unused-expressions
-					// expect(result).to.not.be.null;	// eslint-disable-line no-unused-expressions
 					expect(result).to.be.not.null;		// eslint-disable-line no-unused-expressions
-
-					const resultBody = result.body;
-
-					expect(resultBody).to.be.not.null;		// eslint-disable-line no-unused-expressions
-
-					test_descriptor.verificationFunction(gameEngine, expect, resultBody);
-
+					expect(result.body).to.be.not.null;		// eslint-disable-line no-unused-expressions
+					test_descriptor.verificationFunction(gameEngine, expect, result.body);
 					done();
 				});
 			});
 		});
 	});
+	
+	// TODO: Test that HTTP status code 400 is returned if maxPly < gameEngine.minMaxPly or maxPly > gameEngine.maxMaxPly ; also check the error message in the HTTP response by comparing it to the string returned by gameEngine.errorMessages.maxPlyOutOfRange(maxPly)
 });

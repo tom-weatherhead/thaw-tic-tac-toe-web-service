@@ -1,7 +1,7 @@
 {
   "name": "thaw-tic-tac-toe-web-service",
   "version": "0.1.0",
-  "description": "An Express.js Tic-Tac-Toe Web service",
+  "description": "An Express.js Tic-Tac-Toe Web service.",
   "main": "src/app.js",
   "homepage": "https://github.com/tom-weatherhead/thaw-tic-tac-toe-web-service#readme",
   "repository": {
@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "express": "^4.15.4",
-    "jquery": "^3.2.1",
     "nodemon": "^1.11.0",
     "thaw-tic-tac-toe-engine": "file:../../../LocalSandbox/Node.js/thaw-npm-packages-tgz/thaw-tic-tac-toe-engine-0.1.0.tgz"
   },
@@ -50,7 +49,6 @@
     "eslint",
     "express",
     "grunt",
-    "jquery",
     "mocha",
     "node",
     "nsp",
