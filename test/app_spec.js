@@ -26,8 +26,8 @@ describe('App', function () {
 				// Act
 				chai.request(app).get(url).end(function (error, result) {
 					// Assert
-					expect(error).to.be.null;		// eslint-disable-line
-					expect(result).to.be.not.null;		// eslint-disable-line no-unused-expressions
+					expect(error).to.be.null;				// eslint-disable-line no-unused-expressions
+					expect(result).to.be.not.null;			// eslint-disable-line no-unused-expressions
 					expect(result.body).to.be.not.null;		// eslint-disable-line no-unused-expressions
 					test_descriptor.verificationFunction(gameEngine, expect, result.body);
 					done();
@@ -35,6 +35,40 @@ describe('App', function () {
 			});
 		});
 	});
-	
+
+	if (gameEngine.minMaxPly > 0) {
+		describe('maxPly is zero', function () {
+			it('Rocks!', function (done) {
+				// Arrange
+				const maxPly = 0;
+				const url = '/tictactoe/EEEEEEEEE/' + maxPly;
+
+				// Act
+				chai.request(app).get(url).end(function (error, result) {
+					// Assert
+					expect(error).to.be.not.null;				// eslint-disable-line
+					expect(result).to.have.status(400);
+					done();
+				});
+			});
+		});
+	}
+
+	describe('maxPly is zero', function () {
+		it('Rocks!', function (done) {
+			// Arrange
+			const maxPly = gameEngine.maxMaxPly + 1;
+			const url = '/tictactoe/EEEEEEEEE/' + maxPly;
+
+			// Act
+			chai.request(app).get(url).end(function (error, result) {
+				// Assert
+				expect(error).to.be.not.null;				// eslint-disable-line
+				expect(result).to.have.status(400);
+				done();
+			});
+		});
+	});
+
 	// TODO: Test that HTTP status code 400 is returned if maxPly < gameEngine.minMaxPly or maxPly > gameEngine.maxMaxPly ; also check the error message in the HTTP response by comparing it to the string returned by gameEngine.errorMessages.maxPlyOutOfRange(maxPly)
 });

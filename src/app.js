@@ -11,13 +11,7 @@ const maxMaxPly = gameEngine.maxMaxPly;	// 6;
 const express = require('express');
 const app = express();
 
-// app.use(function(req, res, next) {
-	// res.header("Access-Control-Allow-Origin", "null");
-	// res.header("GET");
-	// next();
-// });
-
-var router = express.Router();
+var router = express.Router();				// eslint-disable-line new-cap
 
 let errorMessages = {
 	gameEngineError: error => {
@@ -28,7 +22,7 @@ let errorMessages = {
 	}
 };
 
-router.get('/:board([EXO]{9})/:maxPly([0-9]{1})', function(req, res) {
+router.get('/:board([EXO]{9})/:maxPly([0-9]{1})', function (req, res) {
 	// Global replace in string: See https://stackoverflow.com/questions/38466499/how-to-replace-all-to-in-nodejs
 	let boardString = req.params.board.replace(/E/g, ' ');		// Replaces all 'E' with ' '.
 	let maxPly = parseInt(req.params.maxPly, 10);
