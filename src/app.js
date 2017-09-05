@@ -11,35 +11,29 @@ const maxMaxPly = gameEngine.maxMaxPly;	// 6;
 const express = require('express');
 const app = express();
 
-var router = express.Router();				// eslint-disable-line new-cap
+const router = express.Router();				// eslint-disable-line new-cap
 
-let errorMessages = {
-	gameEngineError: error => {
-		return 'The Tic-Tac-Toe game engine threw an exception: ' + error.message;
-	},
-	maxPlyOutOfRange: maxPly => {
-		return 'maxPly \'' + maxPly + '\' is not in the range [' + minMaxPly + ', ' + maxMaxPly + '].';
-	}
-};
+const errorMessages = gameEngine.errorMessages;
 
 router.get('/:board([EXO]{9})/:maxPly([0-9]{1})', function (req, res) {
 	// Global replace in string: See https://stackoverflow.com/questions/38466499/how-to-replace-all-to-in-nodejs
-	let boardString = req.params.board.replace(/E/g, ' ');		// Replaces all 'E' with ' '.
-	let maxPly = parseInt(req.params.maxPly, 10);
+	const boardString = req.params.board.replace(/E/g, ' ');		// Replaces all 'E' with ' '.
+	const maxPly = parseInt(req.params.maxPly, 10);
 
 	if (maxPly < minMaxPly || maxPly > maxMaxPly) {
-		let message = errorMessages.maxPlyOutOfRange(maxPly);
+		const message = errorMessages.maxPlyOutOfRange(maxPly, minMaxPly, maxMaxPly);
 
 		console.error(message);
 		res.status(400).send(message);
 	} else {
 
 		try {
-			let result = gameEngine.findBestMove(boardString, maxPly);
+			const result = gameEngine.findBestMove(boardString, maxPly);
 
 			res.json(result);
 		} catch (error) {
-			let message = errorMessages.gameEngineError(error);
+			// const message = errorMessages.gameEngineError(error.message);
+			const message = error.message;
 
 			console.error(error);
 			console.error(message);
@@ -53,7 +47,6 @@ app.use('/tictactoe', router);
 
 module.exports = {
 	app: app,
-	errorMessages: errorMessages,
 	gameEngine: gameEngine
 };
 

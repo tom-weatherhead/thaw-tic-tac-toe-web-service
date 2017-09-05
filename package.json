@@ -24,7 +24,7 @@
   "dependencies": {
     "express": "^4.15.4",
     "nodemon": "^1.11.0",
-    "thaw-tic-tac-toe-engine": "^0.2.0"
+    "thaw-tic-tac-toe-engine": "file:../../../LocalSandbox/Node.js/thaw-npm-packages-tgz/thaw-tic-tac-toe-engine-0.3.0.tgz"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
