@@ -1,4 +1,7 @@
 # thaw-tic-tac-toe-web-service
+
+[![build status](https://secure.travis-ci.org/tom-weatherhead/thaw-tic-tac-toe-web-service.svg)](http://travis-ci.org/tom-weatherhead/thaw-tic-tac-toe-web-service)  [![downloads](https://img.shields.io/npm/dt/thaw-tic-tac-toe-web-service.svg)](https://www.npmjs.com/package/thaw-tic-tac-toe-web-service)
+
 An Express.js Tic-Tac-Toe Web service.
 
 Git installation instructions:
