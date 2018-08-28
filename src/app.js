@@ -7,7 +7,10 @@
 const gameEngine = require('thaw-tic-tac-toe-engine');
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 const router = express.Router();				// eslint-disable-line new-cap
 
