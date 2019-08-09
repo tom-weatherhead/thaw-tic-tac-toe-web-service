@@ -5,9 +5,25 @@
 // Use chai and chai-http to test our app.
 // See https://groundberry.github.io/development/2016/12/10/testing-express-with-mocha-and-chai.html
 
-const pkg = require('..');
-const app = pkg.app;
-const gameEngine = pkg.gameEngine;
+// const pkg = require('..');
+// const app = pkg.app;
+
+// **** BEGIN : Construct an Express app that contains a router that has our game engine in it ****
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+app.use(cors());
+
+const router = express.Router();				// eslint-disable-line new-cap
+
+require('..')(router);
+
+app.use('/tictactoe', router);
+// **** END : Construct an Express app that contains a router that has our game engine in it ****
+
+// const gameEngine = pkg.gameEngine;
+const gameEngine = require('thaw-tic-tac-toe-engine');
 // const errorMessages = gameEngine.errorMessages;
 const testDescriptors = gameEngine.testDescriptors;
 
