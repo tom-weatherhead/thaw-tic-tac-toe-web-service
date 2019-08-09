@@ -1,6 +1,6 @@
 {
 	"name": "thaw-tic-tac-toe-web-service",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "An Express.js Tic-Tac-Toe Web service.",
 	"main": "src/app.js",
 	"homepage": "https://github.com/tom-weatherhead/thaw-tic-tac-toe-web-service#readme",

@@ -71,7 +71,7 @@ Sample JSON response:
 }
 ```
 
-bestScore = 100 indicates that player X can force a victory.
+bestScore = 100 indicates that the indicated player can force a victory.
 
 ## License
 MIT
