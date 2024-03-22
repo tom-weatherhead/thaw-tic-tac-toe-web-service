@@ -23,7 +23,7 @@
 		"thaw-tic-tac-toe-web-service": "src/server.js"
 	},
 	"dependencies": {
-		"express-mixin": "^0.0.3",
+		"express-mixin": "^0.0.5",
 		"thaw-tic-tac-toe-engine": "^0.3.1"
 	},
 	"devDependencies": {
